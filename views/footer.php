@@ -1,7 +1,7 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: rimvydas
- * Date: 18.9.11
- * Time: 21.10
- */
+<footer>
+    <div class="footer-container">
+    
+    </div>
+</footer>
+</body>
+</html>

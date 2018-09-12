@@ -6,19 +6,28 @@
  * Time: 20.41
  */
 
+namespace Plaktukas\Core;
+
 class Connection
 {
+    private $config;
+    private $pdo;
+    public function __construct($config){
+        $this->config = $config;
+    }
 
-    public static function make($config){
-        try{
-            return new PDO(
+
+    public  function getPdo(){
+        
+        if($this->pdo == null){
+            $this->pdo = new PDO(
                 $config['connection'] . ';dbname=' . $config['name'],
                 $config['username'],
                 $config['password'],
                 $config['options']
             );
-        }catch (PDOException $e){
-            die($e->getMessage());
         }
+        
+        return $this->pdo;  
     }
 }
