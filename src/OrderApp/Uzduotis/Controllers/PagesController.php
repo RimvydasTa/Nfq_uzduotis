@@ -4,7 +4,7 @@ namespace OrderApp\Uzduotis\Controllers;
 use OrderApp\Core\Connection;
 use OrderApp\Core\Kernel;
 
-class IndexController {
+class PagesController {
     /**
      * @var Connection
      */
@@ -14,7 +14,17 @@ class IndexController {
         $this->connection = $connection;
     }
     public function renderIndex(){
+
       $this->connection->getPdo();
+
       include Kernel::getViewsDir() . "index.view.php";
+
+    }
+
+    public function showOrdersPage()
+    {
+        $this->connection->getPdo();
+        include Kernel::getViewsDir() . "orders.view.php";
+
     }
 }

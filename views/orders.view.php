@@ -1,3 +1,6 @@
+<?php include "header.php"?>
+
+
 <table class="table">
   <thead>
     <tr>
@@ -226,72 +229,8 @@
       <td>42</td>
       <td></td>
     </tr>
-    <tr>
-      <th>16</th>
-      <td><a href="https://en.wikipedia.org/wiki/A.F.C._Bournemouth" title="A.F.C. Bournemouth">AFC Bournemouth</a></td>
-      <td>38</td>
-      <td>11</td>
-      <td>9</td>
-      <td>18</td>
-      <td>45</td>
-      <td>67</td>
-      <td>−22</td>
-      <td>42</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td><a href="https://en.wikipedia.org/wiki/Sunderland_A.F.C." title="Sunderland A.F.C.">Sunderland</a></td>
-      <td>38</td>
-      <td>9</td>
-      <td>12</td>
-      <td>17</td>
-      <td>48</td>
-      <td>62</td>
-      <td>−14</td>
-      <td>39</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td><a href="https://en.wikipedia.org/wiki/Newcastle_United_F.C." title="Newcastle United F.C.">Newcastle United</a> <strong>(R)</strong>
-      </td>
-      <td>38</td>
-      <td>9</td>
-      <td>10</td>
-      <td>19</td>
-      <td>44</td>
-      <td>65</td>
-      <td>−21</td>
-      <td>37</td>
-      <td>Relegation to the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_Football_League_Championship" title="2016–17 Football League Championship">Football League Championship</a></td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td><a href="https://en.wikipedia.org/wiki/Norwich_City_F.C." title="Norwich City F.C.">Norwich City</a> <strong>(R)</strong>
-      </td>
-      <td>38</td>
-      <td>9</td>
-      <td>7</td>
-      <td>22</td>
-      <td>39</td>
-      <td>67</td>
-      <td>−28</td>
-      <td>34</td>
-      <td>Relegation to the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_Football_League_Championship" title="2016–17 Football League Championship">Football League Championship</a></td>    </tr>
-    <tr>
-      <th>20</th>
-      <td><a href="https://en.wikipedia.org/wiki/Aston_Villa_F.C." title="Aston Villa F.C.">Aston Villa</a> <strong>(R)</strong>
-      </td>
-      <td>38</td>
-      <td>3</td>
-      <td>8</td>
-      <td>27</td>
-      <td>27</td>
-      <td>76</td>
-      <td>−49</td>
-      <td>17</td>
-      <td>Relegation to the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_Football_League_Championship" title="2016–17 Football League Championship">Football League Championship</a></td>
-    </tr>
+
   </tbody>
 </table>
+
+<?php include "footer.php"?>

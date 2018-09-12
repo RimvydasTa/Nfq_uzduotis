@@ -1,5 +1,5 @@
 <?php
-namespace \Plaktukas\Uzduotis\Models;
+namespace OrderApp\Uzduotis\Models;
 
 
 class Order

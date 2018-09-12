@@ -1,6 +1,6 @@
 <?php
 
-namespace Plaktukas\Uzduotis\Controllers;
+namespace OrderApp\Uzduotis\Controllers;
 
 class FormHandler {
 

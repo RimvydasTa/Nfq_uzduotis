@@ -1,6 +1,6 @@
 <?php
 
-namespace Plaktukas\Core;
+namespace OrderApp\Core;
 
 class Kernel {
     public static function getRootDir(){

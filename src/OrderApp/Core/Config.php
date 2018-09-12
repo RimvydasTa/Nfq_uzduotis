@@ -1,20 +1,18 @@
 <?php 
 
-namespace Plaktukas\Core;
+namespace OrderApp\Core;
 
 class Config {
 
     private $configArr = [];
     
     public function __construct(){
-     $road =  __DIR__ . "/../../../etc/config.php";
-       // echo "road=".  $road . "\n";
-      $this->configArr = include $road;
-        
+
+         $road =  __DIR__ . "/../../../etc/config.php";
+         $this->configArr = include $road;
     }
 
-    public function returnString($key){
-            //var_dump($this->configArr);
+    public function returnConfig($key){
             return $this->configArr[$key];
     }
 }

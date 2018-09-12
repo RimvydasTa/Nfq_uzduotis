@@ -6,6 +6,9 @@
  * Time: 20.41
  */
 
+namespace OrderApp\Core;
+
+
 class QueryBuilder
 {
     protected $pdo;

@@ -6,22 +6,38 @@
  * Time: 20.06
  */
 
-
-
 require '../vendor/autoload.php';
 
-use Plaktukas\Core\Connection;
 
-$config = new \Plaktukas\Core\Config();
+use OrderApp\Core\Connection;
+use OrderApp\Core\Config;
+use OrderApp\Uzduotis\Controllers\PagesController;
 
-$db = $config->returnString('database');
+
+$requestUri = $_SERVER['REQUEST_URI'];
+
+$config = new Config();
+
+$db = $config->returnConfig('database');
 
 $connection = new Connection($db);
 
-$indexController = new \Plaktukas\Uzduotis\Controllers\IndexController($connection);
+if ( strpos($requestUri, '/' ) === 0 ) {
+    $pagesController = new PagesController($connection);
+    $pagesController->renderIndex();
 
-$indexController->renderIndex();
-// $home = new HomeController();
+}elseif ( strpos($requestUri, '/orders') === 0){
+    $pagesController = new PagesController($connection);
+    $pagesController->showOrdersPage();
+}
 
-// $home->renderIndex();
+else {
+    $pagesController = new PagesController($connection);
+    $pagesController->renderIndex();
+}
+
+
+
+
+
 
