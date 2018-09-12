@@ -1,7 +1,9 @@
 <?php
 
-namespace Plaktukas\Uzduotis\Controllers;
-use Plaktukas\Core\Connection;
+namespace OrderApp\Uzduotis\Controllers;
+use OrderApp\Core\Connection;
+use OrderApp\Core\Kernel;
+
 class IndexController {
     /**
      * @var Connection
@@ -13,6 +15,6 @@ class IndexController {
     }
     public function renderIndex(){
       $this->connection->getPdo();
-      include \Plaktukas\Core\Kernel::getViewsDir() . "index.view.php";
+      include Kernel::getViewsDir() . "index.view.php";
     }
 }
