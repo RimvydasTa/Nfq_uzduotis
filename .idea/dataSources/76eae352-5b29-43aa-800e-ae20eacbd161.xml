@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="orders@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.9">
+    <root id="1">
+      <ServerVersion>0.16.4.1</ServerVersion>
+      <DefaultCasing>exact</DefaultCasing>
+    </root>
+    <schema id="2" parent="1" name="blog"/>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="larticles"/>
+    <schema id="5" parent="1" name="loginsystem"/>
+    <schema id="6" parent="1" name="myblog"/>
+    <schema id="7" parent="1" name="mysql"/>
+    <schema id="8" parent="1" name="northwind"/>
+    <schema id="9" parent="1" name="orders">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="10" parent="1" name="performance_schema"/>
+    <schema id="11" parent="1" name="slotify"/>
+    <schema id="12" parent="1" name="tasks"/>
+    <table id="13" parent="9" name="orders"/>
+    <column id="14" parent="13" name="id">
+      <Position>1</Position>
+      <DataType>INT(10)|4s</DataType>
+    </column>
+    <column id="15" parent="13" name="first_name">
+      <Position>2</Position>
+      <DataType>VARCHAR(50)|12s</DataType>
+    </column>
+    <column id="16" parent="13" name="last_name">
+      <Position>3</Position>
+      <DataType>VARCHAR(50)|12s</DataType>
+    </column>
+    <column id="17" parent="13" name="email">
+      <Position>4</Position>
+      <DataType>VARCHAR(50)|12s</DataType>
+    </column>
+    <column id="18" parent="13" name="quantity">
+      <Position>5</Position>
+      <DataType>INT(10)|4s</DataType>
+    </column>
+    <column id="19" parent="13" name="date_created">
+      <Position>6</Position>
+      <DataType>DATE(10)|91s</DataType>
+    </column>
+  </database-model>
+</dataSource>

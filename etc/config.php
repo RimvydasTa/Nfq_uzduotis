@@ -10,7 +10,7 @@ return [
   'database' => [
       'name' => 'orders',
       'username' => 'root',
-      'password' => 'root',
+      'password' => '',
       'connection' => 'mysql:host=localhost',
       'options' => [
           PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION

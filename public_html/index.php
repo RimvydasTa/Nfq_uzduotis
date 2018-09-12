@@ -11,6 +11,7 @@ require '../vendor/autoload.php';
 
 use OrderApp\Core\Connection;
 use OrderApp\Core\Config;
+use OrderApp\Core\Routes;
 use OrderApp\Uzduotis\Controllers\PagesController;
 
 
@@ -22,7 +23,14 @@ $db = $config->returnConfig('database');
 
 $connection = new Connection($db);
 
-if ( strpos($requestUri, '/' ) === 0 ) {
+
+//$uri = trim($_SERVER['REQUEST_URI'],'/');
+//
+//$router =  Routes::load('../etc/routes.php');
+//
+//
+//require $router->direct($uri);
+if ( strpos($requestUri, '/' ) === 0 ){
     $pagesController = new PagesController($connection);
     $pagesController->renderIndex();
 
