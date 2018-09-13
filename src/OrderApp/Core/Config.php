@@ -9,7 +9,7 @@ class Config {
     public function __construct(){
 
          $road =  __DIR__ . "/../../../etc/config.php";
-         $this->configArr = include $road;
+         $this->configArr = require $road;
     }
 
     public function returnConfig($key){

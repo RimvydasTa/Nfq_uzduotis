@@ -11,7 +11,7 @@ require '../vendor/autoload.php';
 
 use OrderApp\Core\Connection;
 use OrderApp\Core\Config;
-use OrderApp\Core\Routes;
+use OrderApp\Core\Constants;
 use OrderApp\Uzduotis\Controllers\PagesController;
 
 

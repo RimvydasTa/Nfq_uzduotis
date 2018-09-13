@@ -1,22 +1,15 @@
 <?php
 namespace OrderApp\Uzduotis\Models;
-
+use OrderApp\Core\Connection;
 
 class Order
 {
-    public $postArr = [];
-
-    public function __construct($postArray)
+    private $conenction;
+    public function __construct($connection)
     {
-        $this->postArr = $postArray;
+        $this->connection = $connection;
     }
-
-    public function validate()
-    {
-
-    }
-
-    public function insert()
+    public function insertOrder()
     {
 
     }
