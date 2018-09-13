@@ -11,16 +11,16 @@
 </head>
 <body>
 <header>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+    <nav class="navbar has-background-primary has-text-white" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="https://bulma.io">
-                <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+            <a class="navbar-item has-text-white" href="https://bulma.io">
+              <h2>Air Can</h2>
             </a>
 
             <div class="navbar-start">
 
-                <a href="/" class="navbar-item is-tab is-hidden-mobile m-l-10">Home</a>
-                <a href="/orders" class="navbar-item is-tab is-hidden-mobile">Orders</a>
+                <a href="/" class="navbar-item is-tab is-hidden-mobile has-text-white">Home</a>
+                <a href="/orders" class="navbar-item is-tab is-hidden-mobile has-text-white">Orders</a>
 
             </div>
         </div>

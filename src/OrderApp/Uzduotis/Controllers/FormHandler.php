@@ -15,6 +15,8 @@ class FormHandler {
 
     //Validation error array
     private $errorArray;
+    //Sanitized value array
+    public $postArray = [];
 
     /**
      * Order constructor.
@@ -49,9 +51,12 @@ class FormHandler {
 
         if (!empty($this->errorArray)){
              return $this->errorArray;
+        }else {
+            $this->getPostArray();
+            return true;
         }
 
-        return true;
+
     }
     //Second param string for first or last name
     private function validateName ($name, $letter){
@@ -62,8 +67,8 @@ class FormHandler {
         }
     }
 
-    private function validateLastName ($name, $letter){
-        if (strlen($name) > 50 || strlen($name) < 3){
+    private function validateLastName ($lname, $letter){
+        if (strlen($lname) > 50 || strlen($lname) < 3){
             // array_push($this->errorArray, 'Error: ' . $letter . ' name must be between 3 and 50 characters');
             $this->errorArray['lname'] = 'Error: ' . $letter . ' name must be between 3 and 50 characters';
             return;
@@ -73,7 +78,7 @@ class FormHandler {
 
         //Checks if correct email format
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            array_push($this->errorArray, Constants::$emailWrongFormat);
+            //array_push($this->errorArray, Constants::$emailWrongFormat);
             $this->errorArray['email'] = Constants::$emailWrongFormat;
             return;
         }
@@ -94,10 +99,11 @@ class FormHandler {
                 //array_push($this->errorArray, Constants::$badQuantityFormat);
                $this->errorArray['quantity'] =  Constants::$badQuantityFormat;
            }
-        if($quantity < 1){
-            //array_push($this->errorArray, Constants::$badQuantityFormat);
-        $this->errorArray['quantity'] =  Constants::$quantityTooLow;
-        }
+
+            if($quantity < 1){
+                //array_push($this->errorArray, Constants::$badQuantityFormat);
+            $this->errorArray['quantity'] =  Constants::$quantityTooLow;
+            }
 
         return;
     }
@@ -107,16 +113,24 @@ class FormHandler {
            // array_push($this->errorArray, Constants::$badPhoneFormat);
             $this->errorArray['phone'] =  Constants::$badPhoneFormat;
 
-
         }
         return;
     }
 
-//    public function getError($error)
-//    {
-//        if (in_array($this->errorArray, $error)){
-//            return $error;
-//        }
-//    }
+    public function getPostArray()
+    {
+        $this->postArray = [
+
+                "name" => $this->first_name,
+                "lname" => $this->last_name,
+                "email" => $this->email,
+                "address" => $this->address,
+                "phone" => $this->phone,
+                "quantity" => $this->quantity,
+
+            ];
+
+        return $this->postArray;
+    }
 
 }

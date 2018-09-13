@@ -36,12 +36,10 @@ if (isset($_POST['submit'])){
     $orderData = $formHandler->sanitizeData();
 
     if ($orderData === true){
-        $order = new Order($connection);
+        $order = new Order($connection, $formHandler->postArray);
         $order->insertOrder();
 
-
     }else {
-
        $errorArray = $orderData;
     }
 }
