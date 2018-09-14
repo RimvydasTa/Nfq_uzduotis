@@ -8,41 +8,25 @@
 
 namespace OrderApp\Uzduotis\Services;
 
-
+use OrderApp\Core\Connection;
 use OrderApp\Uzduotis\Models\Order;
 
 class OrderService
 {
+    public $connection;
     //Validation error array
     private $errorArray;
     //Sanitized value array
     public $postArray = [];
 
-    /**
-     * Order constructor.
-     * @param $first_name
-     * @param $last_name
-     * @param $email
-     * @param $phone
-     * @param $address
-     * @param $quantity
-     */
-
-//    public function __construct($first_name, $last_name, $email, $phone, $address, $quantity)
-//    {
-//        $this->first_name = $first_name;
-//        $this->last_name = $last_name;
-//        $this->email = $email;
-//        $this->phone = $phone;
-//        $this->address = $address;
-//        $this->quantity = $quantity;
-//        //Error array
-//        $this->errorArray = [];
-//    }
+    public function __construct($connection)
+    {
+        $this->connection = $connection;
+    }
 
     public function sanitizeData($first_name, $last_name, $email, $phone, $address, $quantity)
     {
-        //$this->validateEmail($email);
+        $this->validateEmail($email);
         $this->validateName($first_name, 'First');
         $this->validateLastName($last_name, 'Last');
         $this->validatePhone($phone);
@@ -145,8 +129,19 @@ class OrderService
 
     }
 
+    public function getOrders()
+    {
+        include "../views/orders.view.php";
+    }
+
     public function getErrorArray()
     {
         return $this->errorArray;
     }
+
+    //TODO Search logic
+
+    //TODO Pagination Logic
+
+    //TODO Filter LOGIC
 }

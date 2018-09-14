@@ -10,7 +10,7 @@
 
         </div>
         <div class="form-container">
-            <form action="/order/create" method="post">
+            <form action="orders/create" method="post">
                 <div class="field">
                     <label class="label">First name</label>
                     <div class="control">
@@ -61,7 +61,7 @@
 
                 <div class="field is-grouped">
                     <div class="control">
-                        <button name="submit" class="button is-medium is-success">Submit</button>
+                        <button name="createOrder" class="button is-medium is-success">Submit</button>
                     </div>
                 </div>
             </form>
