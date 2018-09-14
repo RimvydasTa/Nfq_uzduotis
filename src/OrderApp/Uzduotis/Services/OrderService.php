@@ -1,18 +1,18 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: rimvydas
+ * Date: 18.9.14
+ * Time: 13.18
+ */
 
-namespace OrderApp\Uzduotis\Controllers;
-use OrderApp\Core\Constants;
-
-class FormHandler {
+namespace OrderApp\Uzduotis\Services;
 
 
-    public $first_name;
-    public $last_name;
-    public $email;
-    public $phone;
-    public $address;
-    public $quantity;
+use OrderApp\Uzduotis\Models\Order;
 
+class OrderService
+{
     //Validation error array
     private $errorArray;
     //Sanitized value array
@@ -28,29 +28,29 @@ class FormHandler {
      * @param $quantity
      */
 
-    public function __construct($first_name, $last_name, $email, $phone, $address, $quantity)
-    {
-        $this->first_name = $first_name;
-        $this->last_name = $last_name;
-        $this->email = $email;
-        $this->phone = $phone;
-        $this->address = $address;
-        $this->quantity = $quantity;
-        //Error array
-        $this->errorArray = [];
-    }
+//    public function __construct($first_name, $last_name, $email, $phone, $address, $quantity)
+//    {
+//        $this->first_name = $first_name;
+//        $this->last_name = $last_name;
+//        $this->email = $email;
+//        $this->phone = $phone;
+//        $this->address = $address;
+//        $this->quantity = $quantity;
+//        //Error array
+//        $this->errorArray = [];
+//    }
 
-    public function sanitizeData()
+    public function sanitizeData($first_name, $last_name, $email, $phone, $address, $quantity)
     {
-        $this->validateEmail($this->email);
-        $this->validateName($this->first_name, 'First');
-        $this->validateLastName($this->last_name, 'Last');
-        $this->validatePhone($this->phone);
-        $this->validateAddress($this->address);
-        $this->validateQuantity($this->quantity);
+        //$this->validateEmail($email);
+        $this->validateName($first_name, 'First');
+        $this->validateLastName($last_name, 'Last');
+        $this->validatePhone($phone);
+        $this->validateAddress($address);
+        $this->validateQuantity($quantity);
 
         if (!empty($this->errorArray)){
-             return $this->errorArray;
+            return $this->errorArray;
         }else {
             $this->getPostArray();
             return true;
@@ -61,7 +61,7 @@ class FormHandler {
     //Second param string for first or last name
     private function validateName ($name, $letter){
         if (strlen($name) > 50 || strlen($name) < 3){
-           // array_push($this->errorArray, 'Error: ' . $letter . ' name must be between 3 and 50 characters');
+            // array_push($this->errorArray, 'Error: ' . $letter . ' name must be between 3 and 50 characters');
             $this->errorArray['name'] = 'Error: ' . $letter . ' name must be between 3 and 50 characters';
             return;
         }
@@ -95,22 +95,22 @@ class FormHandler {
 
     private function validateQuantity($quantity){
 
-           if(!filter_var($quantity, FILTER_VALIDATE_INT)){
-                //array_push($this->errorArray, Constants::$badQuantityFormat);
-               $this->errorArray['quantity'] =  Constants::$badQuantityFormat;
-           }
+        if(!filter_var($quantity, FILTER_VALIDATE_INT)){
+            //array_push($this->errorArray, Constants::$badQuantityFormat);
+            $this->errorArray['quantity'] =  Constants::$badQuantityFormat;
+        }
 
-            if($quantity < 1){
-                //array_push($this->errorArray, Constants::$badQuantityFormat);
+        if($quantity < 1){
+            //array_push($this->errorArray, Constants::$badQuantityFormat);
             $this->errorArray['quantity'] =  Constants::$quantityTooLow;
-            }
+        }
 
         return;
     }
 
     private function validatePhone($phone){
         if (!preg_match('/^\+370\d{8}$/', $phone)){
-           // array_push($this->errorArray, Constants::$badPhoneFormat);
+            // array_push($this->errorArray, Constants::$badPhoneFormat);
             $this->errorArray['phone'] =  Constants::$badPhoneFormat;
 
         }
@@ -121,16 +121,32 @@ class FormHandler {
     {
         $this->postArray = [
 
-                "name" => $this->first_name,
-                "lname" => $this->last_name,
-                "email" => $this->email,
-                "address" => $this->address,
-                "phone" => $this->phone,
-                "quantity" => $this->quantity,
+            "name" => $this->first_name,
+            "lname" => $this->last_name,
+            "email" => $this->email,
+            "address" => $this->address,
+            "phone" => $this->phone,
+            "quantity" => $this->quantity,
 
-            ];
+        ];
 
         return $this->postArray;
     }
 
+    public function createOrder(Order $order)
+    {
+        //TODO validate
+
+        //TODO if false getErrorArray()
+
+        //Todo insert i db
+
+        //return true or false
+
+    }
+
+    public function getErrorArray()
+    {
+        return $this->errorArray;
+    }
 }

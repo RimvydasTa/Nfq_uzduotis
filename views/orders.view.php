@@ -1,4 +1,4 @@
-<?php include "header.php"?>
+<?php include "header.view.php" ?>
 
 
 <table class="table">
@@ -233,4 +233,4 @@
   </tbody>
 </table>
 
-<?php include "footer.php"?>
+<?php include "footer.view.php" ?>

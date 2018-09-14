@@ -1,16 +1,16 @@
-<?php require "orders/create.php" ?>
-<?php include "header.php" ?>
+<?php include "header.view.php" ?>
 
 <div class="container">
     <div class="content">
         <div class="title">
+            <div class="is-success"><?php if(isset($result))  echo $result; ?></div>
             <h1>INDEX PHP</h1>
         </div>
         <div class="description">
 
         </div>
         <div class="form-container">
-            <form action="" method="post">
+            <form action="/order/create" method="post">
                 <div class="field">
                     <label class="label">First name</label>
                     <div class="control">
@@ -29,7 +29,7 @@
                 <div class="field">
                     <label class="label">Email</label>
                     <div class="control">
-                        <input class="input <?php if (isset($errorArray['email'])) echo "is-danger"?>" type="email" name="last_name" placeholder="Enter E-mail" >
+                        <input class="input <?php if (isset($errorArray['email'])) echo "is-danger"?>" type="email" name="email" placeholder="Enter E-mail" >
                     </div>
                     <p class="help is-danger"><?php if (isset($errorArray['email'])) echo $errorArray['email']?></p>
                 </div>
@@ -69,4 +69,4 @@
     </div>
 </div>
 
-<?php include "footer.php" ?>
+<?php include "footer.view.php" ?>

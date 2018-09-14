@@ -4,23 +4,31 @@ use OrderApp\Core\Connection;
 
 class Order
 {
-    private $conenction;
+
+    public $first_name;
+    public $last_name;
+    public $email;
+    public $phone;
+    public $address;
+    public $quantity;
     private $dataArr = [];
 
-    public function __construct($connection, $dataArr)
-    {
-        $this->connection = $connection;
-        $this->dataArr = $dataArr;
-    }
-    public function insertOrder()
-    {
-        $statment = $this->conenction->prepare('insert into orders values (first_name, last_name, email, quantity, date_created))');
+    public function initializeFrom(){
 
-        if($statment->execute()){
-            return $this->success = "Order inserted";
+    }
+    public function insertOrder($pdo)
+    {
+        $statement = $pdo->prepare("insert into orders( first_name, last_name,email,quantity) values ('Rimvydas', 'Tamo', 'email@email', 2)");
+        
+        if ($statement->execute()){
+            $this->successMsg = "Order successfully added! Check all orders here:";
+            return $this->successMsg;
         }else {
-            die("Execution failed");
+            die("Error order insert failed");
         }
+
+
+
 
     }
 
