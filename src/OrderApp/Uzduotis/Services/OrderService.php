@@ -7,8 +7,6 @@
  */
 
 namespace OrderApp\Uzduotis\Services;
-
-use OrderApp\Core\Connection;
 use OrderApp\Uzduotis\Models\Order;
 
 class OrderService
@@ -16,27 +14,25 @@ class OrderService
     public $connection;
     //Validation error array
     private $errorArray;
-    //Sanitized value array
-    public $postArray = [];
 
     public function __construct($connection)
     {
         $this->connection = $connection;
     }
 
-    public function sanitizeData($first_name, $last_name, $email, $phone, $address, $quantity)
+    public function sanitizeData($orderArr)
     {
-        $this->validateEmail($email);
-        $this->validateName($first_name, 'First');
-        $this->validateLastName($last_name, 'Last');
-        $this->validatePhone($phone);
-        $this->validateAddress($address);
-        $this->validateQuantity($quantity);
+        $this->validateEmail($orderArr['email']);
+        $this->validateName($orderArr['name'], 'First');
+        $this->validateLastName($orderArr['lname'], 'Last');
+        $this->validatePhone($orderArr['phone']);
+        $this->validateAddress($orderArr['address']);
+        $this->validateQuantity($orderArr['quantity']);
 
         if (!empty($this->errorArray)){
             return $this->errorArray;
         }else {
-            $this->getPostArray();
+
             return true;
         }
 
@@ -45,16 +41,16 @@ class OrderService
     //Second param string for first or last name
     private function validateName ($name, $letter){
         if (strlen($name) > 50 || strlen($name) < 3){
-            // array_push($this->errorArray, 'Error: ' . $letter . ' name must be between 3 and 50 characters');
-            $this->errorArray['name'] = 'Error: ' . $letter . ' name must be between 3 and 50 characters';
+             array_push($this->errorArray, 'Error: ' . $letter . ' name must be between 3 and 50 characters');
+            //$this->errorArray['name'] = 'Error: ' . $letter . ' name must be between 3 and 50 characters';
             return;
         }
     }
 
     private function validateLastName ($lname, $letter){
         if (strlen($lname) > 50 || strlen($lname) < 3){
-            // array_push($this->errorArray, 'Error: ' . $letter . ' name must be between 3 and 50 characters');
-            $this->errorArray['lname'] = 'Error: ' . $letter . ' name must be between 3 and 50 characters';
+             array_push($this->errorArray, 'Error: ' . $letter . ' name must be between 3 and 50 characters');
+            //$this->errorArray['lname'] = 'Error: ' . $letter . ' name must be between 3 and 50 characters';
             return;
         }
     }
@@ -62,16 +58,16 @@ class OrderService
 
         //Checks if correct email format
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            //array_push($this->errorArray, Constants::$emailWrongFormat);
-            $this->errorArray['email'] = Constants::$emailWrongFormat;
+            array_push($this->errorArray, Constants::$emailWrongFormat);
+            //$this->errorArray['email'] = Constants::$emailWrongFormat;
             return;
         }
     }
 
     private function validateAddress($address){
         if (!preg_match('/^(?:\\d+ [a-zA-Z ]+, ){2}[a-zA-Z ]+$/', $address)){
-            //array_push($this->errorArray, Constants::$badAddressFormat);
-            $this->errorArray['address'] =  Constants::$badAddressFormat;
+            array_push($this->errorArray, Constants::$badAddressFormat);
+            //$this->errorArray['address'] =  Constants::$badAddressFormat;
 
             return;
         }
@@ -80,13 +76,13 @@ class OrderService
     private function validateQuantity($quantity){
 
         if(!filter_var($quantity, FILTER_VALIDATE_INT)){
-            //array_push($this->errorArray, Constants::$badQuantityFormat);
-            $this->errorArray['quantity'] =  Constants::$badQuantityFormat;
+            array_push($this->errorArray, Constants::$badQuantityFormat);
+           // $this->errorArray['quantity'] =  Constants::$badQuantityFormat;
         }
 
         if($quantity < 1){
-            //array_push($this->errorArray, Constants::$badQuantityFormat);
-            $this->errorArray['quantity'] =  Constants::$quantityTooLow;
+            array_push($this->errorArray, Constants::$badQuantityFormat);
+           // $this->errorArray['quantity'] =  Constants::$quantityTooLow;
         }
 
         return;
@@ -94,41 +90,29 @@ class OrderService
 
     private function validatePhone($phone){
         if (!preg_match('/^\+370\d{8}$/', $phone)){
-            // array_push($this->errorArray, Constants::$badPhoneFormat);
-            $this->errorArray['phone'] =  Constants::$badPhoneFormat;
+             array_push($this->errorArray, Constants::$badPhoneFormat);
+            //$this->errorArray['phone'] =  Constants::$badPhoneFormat;
 
         }
         return;
     }
 
-    public function getPostArray()
-    {
-        $this->postArray = [
 
-            "name" => $this->first_name,
-            "lname" => $this->last_name,
-            "email" => $this->email,
-            "address" => $this->address,
-            "phone" => $this->phone,
-            "quantity" => $this->quantity,
 
-        ];
-
-        return $this->postArray;
-    }
-
-    public function createOrder(Order $order)
+    public function createOrder(array $orderArr)
     {
         //TODO validate
-            $this->sanitizeData($order);
-
-
-        //TODO if false getErrorArray()
-
-        //Todo insert i db
+           if ( $this->sanitizeData($orderArr)){
+               //Todo insert i db
+               $order = new Order();
+               $order->insertOrder($orderArr, $this->connection);
+           }else {
+               //TODO if false getErrorArray()
+               return false;
+           }
 
         //return true or false
-
+            return true;
     }
 
     public function getOrders()

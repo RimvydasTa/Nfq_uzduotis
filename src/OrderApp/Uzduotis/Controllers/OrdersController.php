@@ -39,7 +39,8 @@ class OrdersController {
             if ( $rez) {
                 // TODO redirect to list
                 header("Location: /");
-
+                //TODO code success msg func
+                return $ordersService->getSuccessMsg();
 
             } else {
                 // render view / response
@@ -80,7 +81,15 @@ class OrdersController {
 
     private function getOrderDataFromPost () {
         // TODO
-        return [];
+
+        return [
+            "name" => $_POST['first_name'],
+            "lname" =>  $_POST['last_name'],
+            "email" => $_POST['email'],
+            "address" =>  $_POST['address'],
+            "phone" =>  $_POST['phone'],
+            "quantity" =>  $_POST['quantity'],
+        ];
     }
     
 }
