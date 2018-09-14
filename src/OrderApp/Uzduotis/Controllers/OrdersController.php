@@ -18,7 +18,7 @@ class OrdersController {
     public function createOrder()
     {
         // gauti duomanis is request
-        $createOrder = $this->getPostParam('createOrder'); // jau submitas
+        $createOrder = $this->getPostParam('createOrder', ''); // jau submitas
 
        // BL
         if ($createOrder) {

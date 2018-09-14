@@ -26,9 +26,10 @@ class Order
         }else {
             die("Error order insert failed");
         }
+    }
 
-
-
+    public function fetchOrders()
+    {
 
     }
 

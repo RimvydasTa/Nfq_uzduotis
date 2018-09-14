@@ -120,6 +120,8 @@ class OrderService
     public function createOrder(Order $order)
     {
         //TODO validate
+            $this->sanitizeData($order);
+
 
         //TODO if false getErrorArray()
 
