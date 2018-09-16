@@ -36,20 +36,21 @@ class OrdersController {
 
 
             $rez = $ordersService->createOrder($orderData);
-            if ( $rez) {
+            if ( $rez === true) {
                 // TODO redirect to list
-                header("Location: /");
+                header("Location: ../index.php");
                 //TODO code success msg func
-                return $ordersService->getSuccessMsg();
+                return true;
 
             } else {
                 // render view / response
                 // TODO error message pass to .. order edit form
                 // include order edit form
+                //Rez is error array
+                return $rez;
             }
         } else  {
-            // render view / response
-            // TODO include order edit form
+
         }
     }
 
@@ -80,8 +81,6 @@ class OrdersController {
     }
 
     private function getOrderDataFromPost () {
-        // TODO
-
         return [
             "name" => $_POST['first_name'],
             "lname" =>  $_POST['last_name'],

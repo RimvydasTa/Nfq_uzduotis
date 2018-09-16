@@ -22,15 +22,16 @@ class OrderService
 
     public function sanitizeData($orderArr)
     {
-        $this->validateEmail($orderArr['email']);
+       // $this->validateEmail($orderArr['email']);
         $this->validateName($orderArr['name'], 'First');
         $this->validateLastName($orderArr['lname'], 'Last');
         $this->validatePhone($orderArr['phone']);
-        $this->validateAddress($orderArr['address']);
+       // $this->validateAddress($orderArr['address']);
         $this->validateQuantity($orderArr['quantity']);
 
         if (!empty($this->errorArray)){
-            return $this->errorArray;
+
+            return false ;
         }else {
 
             return true;
@@ -43,7 +44,7 @@ class OrderService
         if (strlen($name) > 50 || strlen($name) < 3){
              array_push($this->errorArray, 'Error: ' . $letter . ' name must be between 3 and 50 characters');
             //$this->errorArray['name'] = 'Error: ' . $letter . ' name must be between 3 and 50 characters';
-            return;
+
         }
     }
 
@@ -51,16 +52,16 @@ class OrderService
         if (strlen($lname) > 50 || strlen($lname) < 3){
              array_push($this->errorArray, 'Error: ' . $letter . ' name must be between 3 and 50 characters');
             //$this->errorArray['lname'] = 'Error: ' . $letter . ' name must be between 3 and 50 characters';
-            return;
+
         }
     }
     private function validateEmail ($email){
 
         //Checks if correct email format
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            array_push($this->errorArray, Constants::$emailWrongFormat);
+            array_push($this->errorArray, 'Error: wrong email format');
             //$this->errorArray['email'] = Constants::$emailWrongFormat;
-            return;
+
         }
     }
 
@@ -69,32 +70,32 @@ class OrderService
             array_push($this->errorArray, Constants::$badAddressFormat);
             //$this->errorArray['address'] =  Constants::$badAddressFormat;
 
-            return;
+
         }
     }
 
     private function validateQuantity($quantity){
 
         if(!filter_var($quantity, FILTER_VALIDATE_INT)){
-            array_push($this->errorArray, Constants::$badQuantityFormat);
+            array_push($this->errorArray, 'Error quantity must be a number');
            // $this->errorArray['quantity'] =  Constants::$badQuantityFormat;
         }
 
         if($quantity < 1){
-            array_push($this->errorArray, Constants::$badQuantityFormat);
+            array_push($this->errorArray, 'Error: Quantity must be 1 or higher');
            // $this->errorArray['quantity'] =  Constants::$quantityTooLow;
         }
 
-        return;
+
     }
 
     private function validatePhone($phone){
         if (!preg_match('/^\+370\d{8}$/', $phone)){
-             array_push($this->errorArray, Constants::$badPhoneFormat);
+             array_push($this->errorArray, 'Error bad phone format. Example format +370xxxxxxxx (no spaces)');
             //$this->errorArray['phone'] =  Constants::$badPhoneFormat;
 
         }
-        return;
+
     }
 
 
@@ -108,7 +109,8 @@ class OrderService
                $order->insertOrder($orderArr, $this->connection);
            }else {
                //TODO if false getErrorArray()
-               return false;
+
+               return $this->getErrorArray();
            }
 
         //return true or false
