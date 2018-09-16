@@ -5,7 +5,7 @@ namespace OrderApp\Uzduotis\Models;
 class Order
 {
 
-
+    //Db order data
     private $first_name;
     private $last_name;
     private $email;
@@ -13,6 +13,7 @@ class Order
     private $address;
     private $quantity;
 
+    //url param data
     public $searchString;
     public $sortBy;
     public $sort;
@@ -20,6 +21,7 @@ class Order
     public $perPage = 10;
 
 
+    //Strips tags and assigns subbmited data to variables
     public function assignData($orderArr){
 
 
@@ -57,15 +59,19 @@ class Order
         $this->sortBy = $_GET['sortBy'] ?? 'id';
         $this->sort = $_GET['sort'] ?? 'ASC';
         $this->page = $_GET['page'] ?? 1;
-        //die(var_dump( $this->page));
 
+        //How many results show per page
         $this->perPage = 10;
+        //Calc page start
         $start = $this->page > 1 ? ($this->page * $this->perPage) - $this->perPage : 0;
 
 
         if (isset($_POST['searchString'])){
+
             $this->searchString = $_POST['searchString'];
+
             $statement = $pdo->getPdo()->prepare("select SQL_CALC_FOUND_ROWS * from orders where 
+
               first_name LIKE '%{$this->searchString}%' OR
               last_name LIKE '%{$this->searchString}%' OR
               email LIKE '%{$this->searchString}%' OR
@@ -81,11 +87,16 @@ class Order
             if ($statement->execute()){
                 $results = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
+                //calculate returned rows
                 $total = $pdo->getPdo()->query("select FOUND_ROWS() as total")->fetch()['total'];
+
+                //Calculate how many pagination pages
                 $pages = ceil($total / $this->perPage);
                 session_start();
+                //Pass to session for use in view
                 $_SESSION['pages'] = $pages;
 
+                //Return fetched orders
                 return $results;
 
             }else {
@@ -111,8 +122,6 @@ class Order
                 die("Error order insert failed. Check db");
             }
 
-
-//
     }
 
 }

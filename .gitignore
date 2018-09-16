@@ -1,6 +1,7 @@
 # Ignore vendor and node_modules folders
 /node_modules
 /vendor
+/log
 
 error.log
 package-lock.json

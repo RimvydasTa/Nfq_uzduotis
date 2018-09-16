@@ -66,7 +66,7 @@ var_dump($pages);
   </tbody>
 </table>
     <?php for($x = 1; $x <= $pages; $x++): ?>
-        <a href="?page=<?php echo $x;?>"><?php echo $x ?></a>
+        <a class="pagination-link" href="?page=<?php echo $x;?>"><?php echo $x ?></a>
 
     <?php endfor; ?>
 
