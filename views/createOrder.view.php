@@ -1,10 +1,27 @@
 <?php include "header.view.php" ?>
+<?php
+session_start();
+
+$errors = $_SESSION['errors'] ?? [];
+
+
+?>
+
+
 
 <div class="container">
     <div class="content">
+        <div class="error-container">
+            <ul class="has-background-danger">
+
+                <?php foreach($errors as $error): ?>
+                    <li><?php echo $error?></li>
+                <?php endforeach; ?>
+
+            </ul>
+        </div>
         <div class="title">
-            <div class="is-success"><?php if(isset($result))  echo $result; ?></div>
-            <h1>INDEX PHP</h1>
+            <div class="is-success"><?php if(isset($_GET['order'])) echo "Success! Order successfully submitted."?></div>
         </div>
         <div class="description">
 
@@ -14,54 +31,51 @@
                 <div class="field">
                     <label class="label">First name</label>
                     <div class="control">
-                        <input class="input <?php if (isset($errorArray['name'])) echo  "is-danger"?>" type="text" name="first_name" placeholder="Enter First Name" >
+                        <input class="input" type="text" name="first_name" placeholder="Enter First Name" >
                     </div>
-                      <p class="help is-danger"><?php if (isset($errorArray['name'])) echo $errorArray['name']?></p>
+
                 </div>
                 <div class="field">
                     <label class="label">Last name</label>
                     <div class="control">
-                        <input class="input <?php if (isset($errorArray['lname'])) echo "is-danger"?>" type="text" name="last_name" placeholder="Enter Last Name"  >
+                        <input class="input" type="text" name="last_name" placeholder="Enter Last Name"  >
                     </div>
-                    <p class="help is-danger"><?php if (isset($errorArray['lname'])) echo $errorArray['lname']?></p>
+
                 </div>
 
                 <div class="field">
                     <label class="label">Email</label>
                     <div class="control">
-                        <input class="input <?php if (isset($errorArray['email'])) echo "is-danger"?>" type="email" name="email" placeholder="Enter E-mail" >
+                        <input class="input" type="email" name="email" placeholder="Enter E-mail" >
                     </div>
-                    <p class="help is-danger"><?php if (isset($errorArray['email'])) echo $errorArray['email']?></p>
                 </div>
 
                 <div class="field">
                     <label class="label">Address</label>
                     <div class="control">
-                        <input class="input <?php if (isset($errorArray['address'])) echo "is-danger"?>" type="text" name="address" placeholder="Enter Address" >
+                        <input class="input" type="text" name="address" placeholder="Enter Address" >
                     </div>
-                    <p class="help is-danger"><?php if (isset($errorArray['address'])) echo $errorArray['address']?></p>
+
                 </div>
 
                 <div class="field">
                     <label class="label">Phone</label>
                     <div class="control">
-                        <input class="input <?php if (isset($errorArray['phone'])) echo "is-danger"?>" type="text" name="phone" placeholder="Enter Phone Number" value="+370" >
+                        <input class="input" type="text" name="phone" placeholder="Enter Phone Number" value="+370" >
                     </div>
-                    <p class="help is-danger"><?php if (isset($errorArray['phone'])) echo $errorArray['phone']?></p>
                 </div>
 
                 <div class="field">
                     <label class="label">Quantity</label>
                     <div class="control">
-                        <input class="input <?php if (isset($errorArray['quantity'])) echo "is-danger" ?>" type="number" name="quantity" value="1" >
+                        <input class="input" type="number" name="quantity" value="1" >
                     </div>
-                    <p class="help is-danger"><?php if (isset($errorArray['quantity'])) echo $errorArray['quantity']?></p>
                 </div>
 
 
                 <div class="field is-grouped">
                     <div class="control">
-                        <button name="createOrder" class="button is-medium is-success">Submit</button>
+                        <button type="submit" name="createOrder" class="button is-medium is-success">Submit</button>
                     </div>
                 </div>
             </form>

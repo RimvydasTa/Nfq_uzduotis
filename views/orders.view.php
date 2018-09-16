@@ -1,236 +1,74 @@
 <?php include "header.view.php" ?>
+<?php
 
 
+$pages = $_SESSION['pages'] ?? '';
+
+var_dump($pages);
+
+?>
+<form action="?page=1" method="post">
+    <input class="input" type="text" name="searchString">
+    <button name= "searchOrder" class="is-primary button is-medium">Search</button>
+</form>
 <table class="table">
   <thead>
     <tr>
-      <th><abbr title="Position">Pos</abbr></th>
-      <th>Team</th>
-      <th><abbr title="Played">Pld</abbr></th>
-      <th><abbr title="Won">W</abbr></th>
-      <th><abbr title="Drawn">D</abbr></th>
-      <th><abbr title="Lost">L</abbr></th>
-      <th><abbr title="Goals for">GF</abbr></th>
-      <th><abbr title="Goals against">GA</abbr></th>
-      <th><abbr title="Goal difference">GD</abbr></th>
-      <th><abbr title="Points">Pts</abbr></th>
-      <th>Qualification or relegation</th>
+      <th>Id
+              <a href="?sort=ASC&sortBy=id"> <i class="fa fa-angle-up"></i></a>
+              <a href="?sort=DESC&sortBy=id"> <i class="fa fa-angle-down"></i></a>
+      <th>First Name
+                <a href="?sort=ASC&sortBy=first_name"> <i class="fa fa-angle-up"></i></a>
+                <a href="?sort=DESC&sortBy=first_name"> <i class="fa fa-angle-down"></i></a>
+            </th>
+      <th>Last Name
+              <a href="?sort=ASC&sortBy=last_name"> <i class="fa fa-angle-up"></i></a>
+              <a href="?sort=DESC&sortBy=last_name"> <i class="fa fa-angle-down"></i></a>
+          </th>
+      <th>Email
+              <a href="?sort=ASC&sortBy=email"> <i class="fa fa-angle-up"></i></a>
+              <a href="?sort=DESC&sortBy=email"> <i class="fa fa-angle-down"></i></a>
+          </th>
+      <th>Address
+              <a href="?sort=ASC&sortBy=address"> <i class="fa fa-angle-up"></i></a>
+              <a href="?sort=DESC&sortBy=address"> <i class="fa fa-angle-down"></i></a>
+          </th>
+      <th>Phone
+              <a href="?sort=ASC&sortBy=phone"> <i class="fa fa-angle-up"></i></a>
+              <a href="?sort=DESC&sortBy=phone"> <i class="fa fa-angle-down"></i></a>
+          </th>
+      <th>Quantity
+              <a href="?sort=ASC&sortBy=quantity"> <i class="fa fa-angle-up"></i></a>
+              <a href="?sort=DESC&sortBy=quantity"> <i class="fa fa-angle-down"></i></a>
+          </th>
+      <th>Order date
+              <a href="?sort=ASC&sortBy=date"> <i class="fa fa-angle-up"></i></a>
+              <a href="?sort=DESC&sortBy=date"> <i class="fa fa-angle-down"></i></a>
+          </th>
     </tr>
   </thead>
-  <tfoot>
-    <tr>
-      <th><abbr title="Position">Pos</abbr></th>
-      <th>Team</th>
-      <th><abbr title="Played">Pld</abbr></th>
-      <th><abbr title="Won">W</abbr></th>
-      <th><abbr title="Drawn">D</abbr></th>
-      <th><abbr title="Lost">L</abbr></th>
-      <th><abbr title="Goals for">GF</abbr></th>
-      <th><abbr title="Goals against">GA</abbr></th>
-      <th><abbr title="Goal difference">GD</abbr></th>
-      <th><abbr title="Points">Pts</abbr></th>
-      <th>Qualification or relegation</th>
-    </tr>
-  </tfoot>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">Leicester City</a> <strong>(C)</strong>
-      </td>
-      <td>38</td>
-      <td>23</td>
-      <td>12</td>
-      <td>3</td>
-      <td>68</td>
-      <td>36</td>
-      <td>+32</td>
-      <td>81</td>
-      <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td><a href="https://en.wikipedia.org/wiki/Arsenal_F.C." title="Arsenal F.C.">Arsenal</a></td>
-      <td>38</td>
-      <td>20</td>
-      <td>11</td>
-      <td>7</td>
-      <td>65</td>
-      <td>36</td>
-      <td>+29</td>
-      <td>71</td>
-      <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td><a href="https://en.wikipedia.org/wiki/Tottenham_Hotspur_F.C." title="Tottenham Hotspur F.C.">Tottenham Hotspur</a></td>
-      <td>38</td>
-      <td>19</td>
-      <td>13</td>
-      <td>6</td>
-      <td>69</td>
-      <td>35</td>
-      <td>+34</td>
-      <td>70</td>
-      <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>
-    </tr>
-    <tr class="is-selected">
-      <th>4</th>
-      <td><a href="https://en.wikipedia.org/wiki/Manchester_City_F.C." title="Manchester City F.C.">Manchester City</a></td>
-      <td>38</td>
-      <td>19</td>
-      <td>9</td>
-      <td>10</td>
-      <td>71</td>
-      <td>41</td>
-      <td>+30</td>
-      <td>66</td>
-      <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Play-off_round" title="2016–17 UEFA Champions League">Champions League play-off round</a></td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td><a href="https://en.wikipedia.org/wiki/Manchester_United_F.C." title="Manchester United F.C.">Manchester United</a></td>
-      <td>38</td>
-      <td>19</td>
-      <td>9</td>
-      <td>10</td>
-      <td>49</td>
-      <td>35</td>
-      <td>+14</td>
-      <td>66</td>
-      <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Group_stage" title="2016–17 UEFA Europa League">Europa League group stage</a></td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td><a href="https://en.wikipedia.org/wiki/Southampton_F.C." title="Southampton F.C.">Southampton</a></td>
-      <td>38</td>
-      <td>18</td>
-      <td>9</td>
-      <td>11</td>
-      <td>59</td>
-      <td>41</td>
-      <td>+18</td>
-      <td>63</td>
-      <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Group_stage" title="2016–17 UEFA Europa League">Europa League group stage</a></td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td><a href="https://en.wikipedia.org/wiki/West_Ham_United_F.C." title="West Ham United F.C.">West Ham United</a></td>
-      <td>38</td>
-      <td>16</td>
-      <td>14</td>
-      <td>8</td>
-      <td>65</td>
-      <td>51</td>
-      <td>+14</td>
-      <td>62</td>
-      <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Europa_League#Third_qualifying_round" title="2016–17 UEFA Europa League">Europa League third qualifying round</a></td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td><a href="https://en.wikipedia.org/wiki/Liverpool_F.C." title="Liverpool F.C.">Liverpool</a></td>
-      <td>38</td>
-      <td>16</td>
-      <td>12</td>
-      <td>10</td>
-      <td>63</td>
-      <td>50</td>
-      <td>+13</td>
-      <td>60</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td><a href="https://en.wikipedia.org/wiki/Stoke_City_F.C." title="Stoke City F.C.">Stoke City</a></td>
-      <td>38</td>
-      <td>14</td>
-      <td>9</td>
-      <td>15</td>
-      <td>41</td>
-      <td>55</td>
-      <td>−14</td>
-      <td>51</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td><a href="https://en.wikipedia.org/wiki/Chelsea_F.C." title="Chelsea F.C.">Chelsea</a></td>
-      <td>38</td>
-      <td>12</td>
-      <td>14</td>
-      <td>12</td>
-      <td>59</td>
-      <td>53</td>
-      <td>+6</td>
-      <td>50</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td><a href="https://en.wikipedia.org/wiki/Everton_F.C." title="Everton F.C.">Everton</a></td>
-      <td>38</td>
-      <td>11</td>
-      <td>14</td>
-      <td>13</td>
-      <td>59</td>
-      <td>55</td>
-      <td>+4</td>
-      <td>47</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td><a href="https://en.wikipedia.org/wiki/Swansea_City_A.F.C." title="Swansea City A.F.C.">Swansea City</a></td>
-      <td>38</td>
-      <td>12</td>
-      <td>11</td>
-      <td>15</td>
-      <td>42</td>
-      <td>52</td>
-      <td>−10</td>
-      <td>47</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td><a href="https://en.wikipedia.org/wiki/Watford_F.C." title="Watford F.C.">Watford</a></td>
-      <td>38</td>
-      <td>12</td>
-      <td>9</td>
-      <td>17</td>
-      <td>40</td>
-      <td>50</td>
-      <td>−10</td>
-      <td>45</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td><a href="https://en.wikipedia.org/wiki/West_Bromwich_Albion_F.C." title="West Bromwich Albion F.C.">West Bromwich Albion</a></td>
-      <td>38</td>
-      <td>10</td>
-      <td>13</td>
-      <td>15</td>
-      <td>34</td>
-      <td>48</td>
-      <td>−14</td>
-      <td>43</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td><a href="https://en.wikipedia.org/wiki/Crystal_Palace_F.C." title="Crystal Palace F.C.">Crystal Palace</a></td>
-      <td>38</td>
-      <td>11</td>
-      <td>9</td>
-      <td>18</td>
-      <td>39</td>
-      <td>51</td>
-      <td>−12</td>
-      <td>42</td>
-      <td></td>
-    </tr>
 
+  <tbody>
+
+  <?php foreach($orders as $order): ?>
+      <tr>
+          <td><?php echo $order['id']?></td>
+          <td><?php echo $order['first_name']?></td>
+          <td><?php echo $order['last_name']?></td>
+          <td><?php echo $order['email']?></td>
+          <td><?php echo $order['address']?></td>
+          <td><?php echo $order['phone']?></td>
+          <td><?php echo $order['quantity']?></td>
+          <td><?php echo $order['date']?></td>
+      </tr>
+
+  <?php endforeach; ?>
   </tbody>
 </table>
+    <?php for($x = 1; $x <= $pages; $x++): ?>
+        <a href="?page=<?php echo $x;?>"><?php echo $x ?></a>
+
+    <?php endfor; ?>
+
 
 <?php include "footer.view.php" ?>

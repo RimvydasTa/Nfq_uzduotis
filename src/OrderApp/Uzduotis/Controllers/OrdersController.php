@@ -6,25 +6,29 @@ use OrderApp\Core\Config;
 use OrderApp\Core\Connection;
 use OrderApp\Uzduotis\Services\OrderService;
 
+
+
 class OrdersController {
+    public $msg;
 
     public function renderIndex()
     {
         //TODO Include index view
-        include "../views/createOrder.view.php";
+
+        require "../views/createOrder.view.php";
+        session_unset();
+        $errors = [];
     }
 
 
     public function createOrder()
     {
         // gauti duomanis is request
-        $createOrder = $this->getPostParam('createOrder', ''); // jau submitas
+        $createOrder = $this->getPostParam('createOrder', 'createOrder');
 
        // BL
         if ($createOrder) {
-
             $orderData = $this->getOrderDataFromPost();
-
 
             $config = new Config();
             //Getting config from /etc
@@ -37,26 +41,23 @@ class OrdersController {
 
             $rez = $ordersService->createOrder($orderData);
             if ( $rez === true) {
-                // TODO redirect to list
-                header("Location: ../index.php");
-                //TODO code success msg func
-                return true;
+                header("Location: ../index.php?order=success");
 
             } else {
-                // render view / response
-                // TODO error message pass to .. order edit form
-                // include order edit form
-                //Rez is error array
-                return $rez;
+
+                    session_start();
+                    $_SESSION['errors'] = $rez;
+                    header("Location: ../");
             }
         } else  {
-
+           die("Error; something went wrong check logs or db config");
         }
+        return;
     }
 
     public function listOrders()
     {
-        // gauti duomanis iis request
+        // gauti duomanis is request
 
         // BL
         $config = new Config();
@@ -68,12 +69,13 @@ class OrdersController {
 
         // render view / response
         // TODO include orders view
+        include "../views/orders.view.php";
     }
 
 
     private function getPostParam( $name, $default ) {
         if ( isset($_POST[$name])) {
-            return $_POST[$name];
+            return true;
         }
         else {
             return $default;

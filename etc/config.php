@@ -8,7 +8,7 @@
 
 return [
   'database' => [
-      'name' => 'orders',
+      'name' => 'orderapp',
       'username' => 'root',
       'password' => '',
       'connection' => 'mysql:host=localhost',

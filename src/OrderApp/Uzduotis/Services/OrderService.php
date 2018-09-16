@@ -13,7 +13,7 @@ class OrderService
 {
     public $connection;
     //Validation error array
-    private $errorArray;
+    private $errorArray = [];
 
     public function __construct($connection)
     {
@@ -22,11 +22,11 @@ class OrderService
 
     public function sanitizeData($orderArr)
     {
-       // $this->validateEmail($orderArr['email']);
+        $this->validateEmail($orderArr['email']);
         $this->validateName($orderArr['name'], 'First');
         $this->validateLastName($orderArr['lname'], 'Last');
         $this->validatePhone($orderArr['phone']);
-       // $this->validateAddress($orderArr['address']);
+        $this->validateAddress($orderArr['address']);
         $this->validateQuantity($orderArr['quantity']);
 
         if (!empty($this->errorArray)){
@@ -67,10 +67,7 @@ class OrderService
 
     private function validateAddress($address){
         if (!preg_match('/^(?:\\d+ [a-zA-Z ]+, ){2}[a-zA-Z ]+$/', $address)){
-            array_push($this->errorArray, Constants::$badAddressFormat);
-            //$this->errorArray['address'] =  Constants::$badAddressFormat;
-
-
+            array_push($this->errorArray, "Error: incorrect address format. Example format ");
         }
     }
 
@@ -106,6 +103,7 @@ class OrderService
            if ( $this->sanitizeData($orderArr)){
                //Todo insert i db
                $order = new Order();
+
                $order->insertOrder($orderArr, $this->connection);
            }else {
                //TODO if false getErrorArray()
@@ -119,7 +117,9 @@ class OrderService
 
     public function getOrders()
     {
-        include "../views/orders.view.php";
+
+        $order = new Order();
+        return $order->fetchOrders($this->connection);
     }
 
     public function getErrorArray()
