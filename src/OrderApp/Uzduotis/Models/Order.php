@@ -56,9 +56,10 @@ class Order
     public function fetchOrders($pdo)
     {
 
-        $this->sortBy = $_GET['sortBy'] ?? 'id';
-        $this->sort = $_GET['sort'] ?? 'ASC';
-        $this->page = $_GET['page'] ?? 1;
+        $this->sortBy = $_POST['sortBy-inp'] ?? 'id';
+        $this->sort = $_POST['sort-inp'] ?? 'ASC';
+        $this->searchString = $_POST['searchString'] ?? '';
+        $this->page = $_POST['page'] ?? 1;
 
         //How many results show per page
         $this->perPage = 10;
@@ -66,20 +67,20 @@ class Order
         $start = $this->page > 1 ? ($this->page * $this->perPage) - $this->perPage : 0;
 
 
-        if (isset($_POST['searchString'])){
+        if (isset($this->searchString) && !empty($this->searchString)){
 
-            $this->searchString = $_POST['searchString'];
 
-            $statement = $pdo->getPdo()->prepare("select SQL_CALC_FOUND_ROWS * from orders where 
+
+         $statement = $pdo->getPdo()->prepare("select SQL_CALC_FOUND_ROWS * from orders where 
 
               first_name LIKE '%{$this->searchString}%' OR
               last_name LIKE '%{$this->searchString}%' OR
               email LIKE '%{$this->searchString}%' OR
               address LIKE '%{$this->searchString}%' OR
               quantity LIKE '%{$this->searchString}%' OR
-              phone LIKE '%{$this->searchString}%'
-               ORDER BY '{$this->sortBy} {$this->sort}'  
-                  LIMIT {$start}, {$this->perPage}          
+              phone LIKE '%{$this->searchString}%' 
+               ORDER BY {$this->sortBy} {$this->sort} 
+                  LIMIT {$start}, {$this->perPage}        
           ");
 
 
@@ -102,7 +103,7 @@ class Order
             }else {
                 die("Error order insert failed. Check db");
             }
-        }
+        }else {
 
                 $statement = $pdo->getPdo()->prepare("select SQL_CALC_FOUND_ROWS * from orders 
                 ORDER BY  {$this->sortBy} {$this->sort} 
@@ -121,7 +122,7 @@ class Order
             }else {
                 die("Error order insert failed. Check db");
             }
-
+        }
     }
 
 }
