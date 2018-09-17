@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function() {
     var sortInp = document.querySelector(".sort-inp");
     var sortByInp = document.querySelector(".sortBy-inp");
     var page = document.querySelector(".page");
-
     var submitLink = document.querySelectorAll(".submit-link");
 
     for (var i = 0; i < submitLink.length; i++) {
