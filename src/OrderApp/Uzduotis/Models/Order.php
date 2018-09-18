@@ -72,7 +72,8 @@ class Order
 
 
          $statement = $pdo->getPdo()->prepare("select SQL_CALC_FOUND_ROWS * from orders where 
-
+            
+              id LIKE '%{$this->searchString}%' OR
               first_name LIKE '%{$this->searchString}%' OR
               last_name LIKE '%{$this->searchString}%' OR
               email LIKE '%{$this->searchString}%' OR

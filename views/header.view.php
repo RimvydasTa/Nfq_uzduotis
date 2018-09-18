@@ -13,7 +13,7 @@
 </head>
 <body>
 <header>
-    <nav class="navbar has-background-primary has-text-white" role="navigation" aria-label="main navigation">
+    <nav class="navbar navbar-end has-text-white" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item has-text-white" href="https://bulma.io">
               <h2>OrderApp</h2>

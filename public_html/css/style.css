@@ -1,0 +1,64 @@
+
+
+
+/*TODO: Ikelti foto prie formos tel su ranka. ideti teksta sustailinti erorus sutailinti orders page ir responsive*/
+
+html,body {
+    height: 100%;
+    width: 100%;
+    background-color: #ca1aa4;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%23b217a5' points='1600 160 0 460 0 350 1600 50'/%3E%3Cpolygon fill='%239a14a6' points='1600 260 0 560 0 450 1600 150'/%3E%3Cpolygon fill='%238111a8' points='1600 360 0 660 0 550 1600 250'/%3E%3Cpolygon fill='%23690ea9' points='1600 460 0 760 0 650 1600 350'/%3E%3Cpolygon fill='%23510baa' points='1600 800 0 800 0 750 1600 450'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.order-form {
+    background: white;
+    max-width: 450px;
+    padding: 20px;
+    margin-top: 100px;
+    -webkit-box-shadow: -2px 4px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: -2px 4px 3px 0px rgba(0,0,0,0.75);
+    box-shadow: -2px 4px 3px 0px rgba(0,0,0,0.75);
+}
+
+.order-form input {
+    border: none;
+    border-bottom: 2px solid #ca1aa4;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.order-form input::placeholder {
+    font-weight: 300;
+}
+
+.order-form button {
+    background: #ca1aa4;
+    color: #fff;
+    border-radius: 50px;
+    width: 250px;
+
+}
+.order-form .button {
+    border-color: transparent;
+}
+#submit-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-container ul {
+    list-style: none;
+    padding: 0px;
+    margin-left: 0;
+    color: #fff;
+    padding-left: 15px;
+}
+
+.navbar {
+    background: transparent;
+    padding-right: 50px;
+}
