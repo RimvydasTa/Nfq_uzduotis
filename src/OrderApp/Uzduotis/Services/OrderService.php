@@ -46,20 +46,28 @@ class OrderService
             //$this->errorArray['name'] = 'Error: ' . $letter . ' name must be between 3 and 50 characters';
 
         }
+        if (!preg_match('/^[A-Za-z][A-Za-z\s]*$/', $name)){
+            array_push($this->errorArray, 'Error: First name can only contain letters');
+        }
+
+
+
     }
 
     private function validateLastName ($lname, $letter){
         if (strlen($lname) > 50 || strlen($lname) < 3){
              array_push($this->errorArray, 'Error: ' . $letter . ' name must be between 3 and 50 characters');
             //$this->errorArray['lname'] = 'Error: ' . $letter . ' name must be between 3 and 50 characters';
-
+        }
+        if (!preg_match('/^[A-Za-z][A-Za-z\s]*$/', $lname)){
+            array_push($this->errorArray, 'Error: Last name can only contain letters');
         }
     }
     private function validateEmail ($email){
 
         //Checks if correct email format
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            array_push($this->errorArray, 'Error: wrong email format');
+            array_push($this->errorArray, 'Error: Wrong email format');
             //$this->errorArray['email'] = Constants::$emailWrongFormat;
 
         }

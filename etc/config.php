@@ -7,13 +7,13 @@
  */
 
 return [
-  'database' => [
-      'name' => 'orderapp',
-      'username' => 'root',
-      'password' => '',
-      'connection' => 'mysql:host=localhost',
-      'options' => [
-          PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-      ]
-  ]
+    'database' => [
+        'name' => 'taedia_rt0121',
+        'username' => 'taedia_rt0121',
+        'password' => 'TuksteriopaiPakausiniai',
+        'connection' => 'mysql:host=localhost',
+        'options' => [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+        ]
+    ]
 ];
