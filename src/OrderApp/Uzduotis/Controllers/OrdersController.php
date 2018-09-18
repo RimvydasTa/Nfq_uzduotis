@@ -40,7 +40,9 @@ class OrdersController {
 
             $rez = $ordersService->createOrder($orderData);
             if ( $rez === true) {
-                header("Location: ../index.php?order=success");
+                session_start();
+                $_SESSION['success'] = "Order successfully submitted!";
+                header("Location: ../index.php");
 
             } else {
 

@@ -8,6 +8,16 @@ html,body {
     background-size: cover;
 }
 
+.has-background-success {
+    padding: 20px;
+    border-radius: 50px;
+}
+
+.error-container {
+    padding: 20px;
+    border-radius: 50px;
+}
+
 .order-form {
     background: white;
     max-width: 450px;

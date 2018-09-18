@@ -21,8 +21,8 @@
         </div>
             <div class="navbar-end">
 
-                <a href="/" class="navbar-item is-tab is-hidden-mobile has-text-white">Home</a>
-                <a href="/orders" class="navbar-item is-tab is-hidden-mobile has-text-white">Orders</a>
+                <a href="/" class="navbar-item is-tab  has-text-white">Home</a>
+                <a href="/orders" class="navbar-item is-tab  has-text-white">Orders</a>
 
             </div>
 

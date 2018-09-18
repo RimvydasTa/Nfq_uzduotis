@@ -1,42 +1,50 @@
 <?php include "header.view.php" ?>
 <?php
 session_start();
-
 $errors = $_SESSION['errors'] ?? [];
-
-
+$success = $_SESSION['success'] ?? '';
 ?>
 
-<div class="error-container">
-    <ul class="has-background-danger">
 
-        <?php foreach($errors as $error): ?>
-            <li><?php echo $error?></li>
-        <?php endforeach; ?>
-
-    </ul>
-</div>
 
 <div class="container">
+    <div class="error-container has-background-danger" <?php if(!isset($_SESSION['errors'])) echo "hidden"?>>
+        <ul class="">
+
+            <?php foreach($errors as $error): ?>
+                <li><?php echo $error?></li>
+            <?php endforeach; ?>
+
+        </ul>
+    </div>
+    <div class="title has-text-white">
+        <div class="has-background-success" <?php if(!isset($_SESSION['success'])) echo "hidden"?> ><?php if(isset($_SESSION['success'])) echo $_SESSION['success']?></div>
+    </div>
+
     <div class="content columns">
 
-        <div class="title">
-            <div class="is-success"><?php if(isset($_GET['order'])) echo "Success! Order successfully submitted."?></div>
-        </div>
 
         <div class="form-container column">
             <form action="orders/create" class="order-form" method="post">
                 <div class="field">
                     <label class="label">First name</label>
                     <div class="control">
-                        <input class="input" type="text" name="first_name" placeholder="Enter First Name" >
+                        <input class="input"
+                               type="text"
+                               name="first_name"
+                               placeholder="Enter First Name"
+                                 >
                     </div>
 
                 </div>
                 <div class="field">
                     <label class="label">Last name</label>
                     <div class="control">
-                        <input class="input" type="text" name="last_name" placeholder="Enter Last Name"  >
+                        <input class="input"
+                               type="text"
+                               name="last_name"
+                               placeholder="Enter Last Name"
+                              >
                     </div>
 
                 </div>
@@ -44,14 +52,22 @@ $errors = $_SESSION['errors'] ?? [];
                 <div class="field">
                     <label class="label">Email</label>
                     <div class="control">
-                        <input class="input" type="email" name="email" placeholder="Enter E-mail" >
+                        <input class="input"
+                               type="email"
+                               name="email"
+                               placeholder="Enter E-mail"
+                              >
                     </div>
                 </div>
 
                 <div class="field">
                     <label class="label">Address</label>
                     <div class="control">
-                        <input class="input" type="text" name="address" placeholder="Enter Address" >
+                        <input class="input"
+                               type="text"
+                               name="address"
+                               placeholder="Enter Address"
+                        >
                     </div>
 
                 </div>
@@ -59,7 +75,11 @@ $errors = $_SESSION['errors'] ?? [];
                 <div class="field">
                     <label class="label">Phone</label>
                     <div class="control">
-                        <input class="input" type="text" name="phone" placeholder="Enter Phone Number" value="+370" >
+                        <input class="input"
+                               type="text"
+                               name="phone"
+                               placeholder="Enter Phone Number"
+                             >
                     </div>
                 </div>
 
