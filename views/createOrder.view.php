@@ -78,8 +78,14 @@ $errors = $_SESSION['errors'] ?? [];
                 </div>
             </form>
         </div>
-        <div class="description column">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad cupiditate hic maxime molestias odit porro quia repellat reprehenderit totam ut. A accusantium ad alias aperiam assumenda atque autem consectetur deserunt eaque eius ex inventore laudantium, molestiae, officiis quibusdam reiciendis rem, similique sint vel voluptates! Aliquid architecto assumenda impedit obcaecati unde!</p>
+        <div class="description column columns">
+            <div class="text-container column">
+                <h2>Limited sale</h2>
+                <p>Special price for iphone7 just fill the form and you will get you Iphone in 10 bussiness days</p>
+            </div>
+            <div class="img-container column">
+                <img src="./images/iphone.png" alt="">
+            </div>
         </div>
     </div>
 </div>

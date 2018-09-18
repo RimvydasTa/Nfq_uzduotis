@@ -14,17 +14,17 @@
 <body>
 <header>
     <nav class="navbar navbar-end has-text-white" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item has-text-white" href="https://bulma.io">
+        <div class="navbar-brand  navbar-start">
+            <a class="navbar-item has-text-white" href="/">
               <h2>OrderApp</h2>
             </a>
-
-            <div class="navbar-start">
+        </div>
+            <div class="navbar-end">
 
                 <a href="/" class="navbar-item is-tab is-hidden-mobile has-text-white">Home</a>
                 <a href="/orders" class="navbar-item is-tab is-hidden-mobile has-text-white">Orders</a>
 
             </div>
-        </div>
+
     </nav>
 </header>

@@ -69,7 +69,7 @@ class Order
 
         if (isset($this->searchString) && !empty($this->searchString)){
 
-
+            strip_tags($this->searchString);
 
          $statement = $pdo->getPdo()->prepare("select SQL_CALC_FOUND_ROWS * from orders where 
             

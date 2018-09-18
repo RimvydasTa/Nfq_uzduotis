@@ -66,8 +66,8 @@ class OrderService
     }
 
     private function validateAddress($address){
-        if (!preg_match('/^(?:\\d+ [a-zA-Z ]+, ){2}[a-zA-Z ]+$/', $address)){
-            array_push($this->errorArray, "Error: incorrect address format. Example format ");
+            if (strlen($address) > 80 || strlen($address) < 15){
+                array_push($this->errorArray, 'Error: Address cannot be empty,  length must be between 15 and 80 characters');
         }
     }
 
@@ -87,8 +87,8 @@ class OrderService
     }
 
     private function validatePhone($phone){
-        if (!preg_match('/^\+370\d{8}$/', $phone)){
-             array_push($this->errorArray, 'Error bad phone format. Example format +370xxxxxxxx (no spaces)');
+        if (!preg_match('/^\+\d{2,3}\d{8}$/', $phone)){
+             array_push($this->errorArray, 'Error: bad phone format. Example format +370xxxxxxxx (no spaces)');
             //$this->errorArray['phone'] =  Constants::$badPhoneFormat;
 
         }

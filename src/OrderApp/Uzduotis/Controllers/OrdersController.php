@@ -13,7 +13,6 @@ class OrdersController {
 
     public function renderIndex()
     {
-        //TODO Include index view
 
         require "../views/createOrder.view.php";
         session_unset();
@@ -23,10 +22,10 @@ class OrdersController {
 
     public function createOrder()
     {
-        // gauti duomanis is request
+
         $createOrder = $this->getPostParam('createOrder', 'createOrder');
 
-       // BL
+
         if ($createOrder) {
             $orderData = $this->getOrderDataFromPost();
 
@@ -57,15 +56,13 @@ class OrdersController {
 
     public function listOrders()
     {
-        // gauti duomanis is request
 
-        // BL
         $config = new Config();
         $db = $config->returnConfig('database');
         $connection = new Connection($db);
-        $ordersService = new OrderService($connection) ; // TODO galima tik dao kviesti
+        $ordersService = new OrderService($connection) ;
 
-        $orders = $ordersService->getOrders(); // TODO galima tik dao kviesti
+        $orders = $ordersService->getOrders();
 
         // render view / response
         // TODO include orders view
