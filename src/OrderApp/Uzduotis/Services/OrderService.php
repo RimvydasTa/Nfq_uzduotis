@@ -66,8 +66,8 @@ class OrderService
     }
 
     private function validateAddress($address){
-            if (strlen($address) > 80 || strlen($address) < 15){
-                array_push($this->errorArray, 'Error: Address cannot be empty,  length must be between 15 and 80 characters');
+            if (strlen($address) > 80 || strlen($address) < 8){
+                array_push($this->errorArray, 'Error: Address cannot be empty,  length must be between 8 and 80 characters');
         }
     }
 
